@@ -56,6 +56,13 @@ const btnQuizNext       = document.getElementById('btn-quiz-next');
 const btnBackToStart    = document.getElementById('btn-back-to-start');
 const btnThemeToggle    = document.getElementById('btn-theme-toggle');
  
+// Font-size controls
+const btnFontToggle     = document.getElementById('btn-font-toggle');
+const fontPanel         = document.getElementById('font-panel');
+const fontSlider        = document.getElementById('font-slider');
+const fontValue         = document.getElementById('font-value');
+const fontSizeControl   = document.getElementById('font-size-control');
+ 
 // Result
 const resultSub         = document.getElementById('result-sub');
 const btnShuffle        = document.getElementById('btn-shuffle');
@@ -72,19 +79,63 @@ function showScreen(name) {
  
 // ══════════════════════════════════════════════
 // THEME APPLICATION
+// FIX: Theme-Klasse gezielt tauschen, nicht
+//      body.className komplett überschreiben
 // ══════════════════════════════════════════════
 function applyTheme(index) {
-  const t = THEMES[index];
-  body.className = `theme-${t.id}`;
+  THEMES.forEach(t => body.classList.remove(`theme-${t.id}`));
+  body.classList.add(`theme-${THEMES[index].id}`);
 }
  
 function applyPickerTheme(index) {
   applyTheme(index);
   themeNameDisplay.textContent = THEMES[index].name;
   themeDots.forEach((d, i) => d.classList.toggle('active', i === index));
-  // Reset preview card flip
   previewCardInner.classList.remove('flipped');
 }
+ 
+// ══════════════════════════════════════════════
+// FONT SIZE
+// ══════════════════════════════════════════════
+const FONT_STORAGE_KEY = 'quiz-font-size';
+const DEFAULT_FONT_SIZE = 18;
+ 
+function applyFontSize(px) {
+  document.documentElement.style.setProperty('--base-font-size', px + 'px');
+  fontSlider.value = px;
+  fontValue.textContent = px + 'px';
+  try { localStorage.setItem(FONT_STORAGE_KEY, px); } catch(e) {}
+}
+ 
+// Gespeicherte Größe laden
+(function loadSavedFontSize() {
+  try {
+    const saved = parseInt(localStorage.getItem(FONT_STORAGE_KEY));
+    applyFontSize(saved >= 14 && saved <= 28 ? saved : DEFAULT_FONT_SIZE);
+  } catch(e) {
+    applyFontSize(DEFAULT_FONT_SIZE);
+  }
+})();
+ 
+fontSlider.addEventListener('input', () => {
+  applyFontSize(parseInt(fontSlider.value));
+});
+ 
+// Panel öffnen / schließen
+btnFontToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const willOpen = fontPanel.hidden;
+  fontPanel.hidden = !willOpen;
+  btnFontToggle.classList.toggle('btn-icon--active', willOpen);
+});
+ 
+// Klick außerhalb → Panel schließen
+document.addEventListener('click', (e) => {
+  if (!fontSizeControl.contains(e.target)) {
+    fontPanel.hidden = true;
+    btnFontToggle.classList.remove('btn-icon--active');
+  }
+});
  
 // ══════════════════════════════════════════════
 // THEME PICKER EVENTS
@@ -106,7 +157,6 @@ themeDots.forEach(dot => {
   });
 });
  
-// Preview card flip
 previewCard.addEventListener('click', () => {
   previewCardInner.classList.toggle('flipped');
 });
@@ -145,10 +195,7 @@ function showCard(index) {
   cardQuestion.textContent = card.question;
   cardAnswer.textContent   = card.answer;
   cardInner.classList.remove('flipped');
- 
-  // Mark as seen
   seenSet.add(index);
- 
   updateHeader();
   updateProgress();
   updateNavButtons();
@@ -169,23 +216,19 @@ function updateNavButtons() {
   btnQuizPrev.style.opacity = currentIndex === 0 ? '0.35' : '1';
 }
  
-// Flip on card click
 flashcard.addEventListener('click', () => {
   cardInner.classList.toggle('flipped');
 });
  
-// Next
 btnQuizNext.addEventListener('click', () => {
   if (currentIndex < deck.length - 1) {
     currentIndex++;
     showCard(currentIndex);
   } else {
-    // Ende
     showResult();
   }
 });
  
-// Previous
 btnQuizPrev.addEventListener('click', () => {
   if (currentIndex > 0) {
     currentIndex--;
@@ -193,12 +236,10 @@ btnQuizPrev.addEventListener('click', () => {
   }
 });
  
-// Back to start from quiz
 btnBackToStart.addEventListener('click', () => {
   showScreen('start');
 });
  
-// Theme toggle in quiz (cycles through themes)
 btnThemeToggle.addEventListener('click', () => {
   selectedThemeIndex = (selectedThemeIndex + 1) % THEMES.length;
   applyTheme(selectedThemeIndex);
@@ -212,19 +253,16 @@ function showResult() {
   showScreen('result');
 }
  
-// Shuffle und nochmal
 btnShuffle.addEventListener('click', () => {
   deck = shuffle([...cards]);
   startQuiz();
 });
  
-// Von vorne (gleiche Reihenfolge)
 btnRestart.addEventListener('click', () => {
   deck = [...cards];
   startQuiz();
 });
  
-// Zurück zur Startseite
 btnResultHome.addEventListener('click', () => {
   showScreen('start');
 });
