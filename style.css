@@ -208,10 +208,10 @@ body {
 /* Preview card (flip demo) */
 .preview-card {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: auto;
   perspective: 1000px;
   cursor: pointer;
-  max-height: 200px;
+  max-height: none;
 }
  
 .preview-card-inner {
@@ -398,7 +398,6 @@ body {
 /* Flashcard */
 .card-container {
   width: 100%;
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -408,7 +407,7 @@ body {
 .flashcard {
   width: 100%;
   max-width: 440px;
-  aspect-ratio: 3/2;
+  aspect-ratio: auto;
   perspective: 1000px;
   cursor: pointer;
   min-height: 200px;
@@ -424,20 +423,20 @@ body {
 .card-inner.flipped { transform: rotateY(180deg); }
  
 .card-front, .card-back {
-  position: absolute; inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 22px;
-  padding: 1.75rem 2rem;
+  position: absolute;
+  inset: 0;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  justify-content: flex-start;   /* wichtig */
   align-items: center;
-  text-align: center;
-  box-shadow: var(--card-shadow);
-  border: 1.5px solid var(--border);
-  gap: 0.75rem;
-  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+
+  padding: 2rem;
+
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .card-front { background: var(--card-bg); }
 .card-back  { background: var(--flip-back-bg); transform: rotateY(180deg); }
@@ -452,7 +451,7 @@ body {
 }
  
 .card-text {
-  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  font-size: 1em;
   color: var(--text-main);
   line-height: 1.6;
   transition: color 0.4s;
