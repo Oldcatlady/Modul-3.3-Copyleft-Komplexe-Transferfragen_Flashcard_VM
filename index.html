@@ -7,24 +7,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="theme-kristall">
-
+ 
   <!-- ═══════════════════════════════════════
        SCREEN 1: THEME AUSWAHL
   ═══════════════════════════════════════ -->
   <div id="screen-theme" class="screen active">
     <div class="theme-picker">
       <h1 class="picker-title">Wähle dein Theme</h1>
-
       <div class="theme-nav">
         <button class="nav-btn" id="btn-prev" aria-label="Vorheriges Theme">&#8592;</button>
-
         <div class="theme-preview-wrap">
           <div class="theme-label-row">
             <span class="theme-dot"></span>
             <span class="theme-name-display" id="theme-name-display">Kristall</span>
           </div>
-
-          <!-- Beispiel-Flashcard Vorschau -->
           <div class="preview-card" id="preview-card">
             <div class="preview-card-inner" id="preview-card-inner">
               <div class="preview-front">
@@ -38,7 +34,6 @@
               </div>
             </div>
           </div>
-
           <div class="theme-dots-row" id="theme-dots-row">
             <span class="tdot active" data-i="0"></span>
             <span class="tdot" data-i="1"></span>
@@ -46,48 +41,58 @@
             <span class="tdot" data-i="3"></span>
           </div>
         </div>
-
         <button class="nav-btn" id="btn-next" aria-label="Nächstes Theme">&#8594;</button>
       </div>
-
       <button class="btn-primary btn-choose" id="btn-choose">Theme wählen &amp; starten</button>
     </div>
   </div>
-
+ 
   <!-- ═══════════════════════════════════════
        SCREEN 2: STARTSEITE
   ═══════════════════════════════════════ -->
   <div id="screen-start" class="screen">
     <div class="start-wrap">
       <div class="start-icon">&#x1F4DA;</div>
-      <h1 class="start-title">Modul 3.3  Copyleft +  Komplexe Transferfragen</h1>
+      <h1 class="start-title">Modul 1.2: Virtualisierung &amp; Hypervisor</h1>
       <p class="start-count" id="start-count">0 Karten geladen</p>
       <p class="start-sub">Klicke auf eine Karte, um die Antwort zu sehen.</p>
       <button class="btn-primary" id="btn-start">Quiz starten</button>
       <button class="btn-secondary" id="btn-change-theme">Theme ändern</button>
     </div>
   </div>
-
+ 
   <!-- ═══════════════════════════════════════
        SCREEN 3: QUIZ
   ═══════════════════════════════════════ -->
   <div id="screen-quiz" class="screen">
     <div class="quiz-wrap">
-
+ 
       <div class="quiz-header">
         <button class="btn-icon" id="btn-back-to-start" aria-label="Zurück">&#8592;</button>
         <div class="quiz-counter" id="quiz-counter">1 / 5</div>
-        <button class="btn-icon" id="btn-theme-toggle" aria-label="Theme wechseln" title="Theme wechseln">&#9681;</button>
+ 
+        <!-- NEU: Aa-Button + Theme-Button als Gruppe -->
+        <div class="header-actions">
+          <div class="font-size-control" id="font-size-control">
+            <button class="btn-icon" id="btn-font-toggle" aria-label="Schriftgröße anpassen">Aa</button>
+            <div class="font-panel" id="font-panel" hidden>
+              <span class="font-panel-label">A</span>
+              <input type="range" id="font-slider" min="14" max="28" value="18" step="1">
+              <span class="font-panel-label font-panel-label--big">A</span>
+              <span class="font-panel-value" id="font-value">18px</span>
+            </div>
+          </div>
+          <button class="btn-icon" id="btn-theme-toggle" aria-label="Theme wechseln">&#9681;</button>
+        </div>
       </div>
-
+ 
       <div class="progress-bar-wrap">
         <div class="progress-bar-track">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
         <span class="progress-label" id="progress-label">0 von 5 gesehen</span>
       </div>
-
-      <!-- Flipkarte -->
+ 
       <div class="card-container">
         <div class="flashcard" id="flashcard">
           <div class="card-inner" id="card-inner">
@@ -103,15 +108,15 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="quiz-nav">
         <button class="btn-round" id="btn-quiz-prev" aria-label="Zurück">&#8592;</button>
         <button class="btn-round btn-accent" id="btn-quiz-next" aria-label="Weiter">&#8594;</button>
       </div>
-
+ 
     </div>
   </div>
-
+ 
   <!-- ═══════════════════════════════════════
        SCREEN 4: ERGEBNIS
   ═══════════════════════════════════════ -->
@@ -121,15 +126,14 @@
       <h2 class="result-title">Geschafft!</h2>
       <p class="result-sub" id="result-sub">Du hast alle Karten gesehen.</p>
       <div class="result-actions">
-        <button class="btn-primary" id="btn-shuffle">
-          &#x1F500; Mischen &amp; nochmal
-        </button>
+        <button class="btn-primary" id="btn-shuffle">&#x1F500; Mischen &amp; nochmal</button>
         <button class="btn-secondary" id="btn-restart">Von vorne</button>
         <button class="btn-secondary" id="btn-result-home">Startseite</button>
       </div>
     </div>
   </div>
-
+ 
   <script src="script.js"></script>
 </body>
 </html>
+ 
