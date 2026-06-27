@@ -1,0 +1,58 @@
+[
+    {
+      "question": "Was ist Copyleft?",
+      "answer": "Copyleft ist ein Lizenzprinzip, das sicherstellt, dass Software-Quellcode frei und offen bleibt."
+    },
+    {
+      "question": "Was ist der Unterschied zwischen Copyleft und Copyright?",
+      "answer": "Copyright schützt geistiges Eigentum und schränkt Nutzung ein. Copyleft erzwingt das Offenhalten von abgeleitetem Code."
+    },
+    {
+      "question": "Was zwingt das Copyleft einen Entwickler zu tun, wenn er Open-Source-Software modifiziert und weiterverbreitet?",
+      "answer": "Er muss das modifizierte, abgeleitete Werk ebenfalls unter derselben freien Lizenz veröffentlichen."
+    },
+    {
+      "question": "Du stellst den Netzwerkmodus einer VM auf Host-only und führst ping google.com aus. Was passiert und warum?",
+      "answer": "Der Ping schlägt fehl. Im Host-only-Modus gibt es keine Verbindung nach außen — nur zwischen Host und VM."
+    },
+    {
+      "question": "Warum darf die Adresse 192.168.0.255 keinem Gerät manuell zugewiesen werden?",
+      "answer": "Sie ist die Broadcast-Adresse — für Gerätezuweisungen reserviert und technisch nicht als Einzeladresse verwendbar."
+    },
+    {
+      "question": "Deine VM zeigt eine sehr niedrige Auflösung und Drag & Drop funktioniert nicht. Was fehlt?",
+      "answer": "Die Guest Additions wurden nicht in der VM installiert."
+    },
+    {
+      "question": "Ein Unternehmen hat 10 physische Server, die je zu 12% ausgelastet sind. Welches Virtualisierungsproblem entsteht und welche Lösung bietet Virtualisierung?",
+      "answer": "Die Server sind massiv unterausgelastet (durchschnittlich 12%). Virtualisierung konsolidiert alle Workloads auf weniger physische Maschinen und nutzt die vorhandene Leistung optimal aus."
+    },
+    {
+      "question": "Du klonst eine VM und bindest sie ins selbe Netz ein — kurz darauf gibt es Verbindungprobleme. Was hast du vergessen?",
+      "answer": "Die MAC-Adressen wurden nicht neu vergeben — beide VMs haben identische MACs, was zu IP- und Kommunikationskonflikten führt."
+    },
+    {
+      "question": "Was ist der Unterschied zwischen Extension Pack und Guest Additions in je einem Satz?",
+      "answer": "Das Extension Pack erweitert VirtualBox auf dem Host um globale Funktionen wie USB 3.0. Die Guest Additions werden in der VM installiert und verbessern die Interaktion zwischen Host und Gast."
+    },
+    {
+      "question": "Welcher Hypervisor-Typ wäre für ein Rechenzentrum besser geeignet und warum?",
+      "answer": "Typ 1 — weil er direkt auf der Hardware läuft, keinen Host-OS-Overhead hat und damit maximale Performance und Ressourceneffizienz bietet."
+    },
+    {
+      "question": "Warum reicht ipconfig allein nicht aus, um zu prüfen, ob eine IP per DHCP vergeben wurde?",
+      "answer": "Weil ipconfig zwar IP, Maske und Gateway anzeigt, aber nicht ob diese per DHCP oder statisch vergeben wurden. Das zeigt erst ipconfig /all."
+    },
+    {
+      "question": "Ein PC sendet ein Paket an 192.168.0.255. Wer empfängt dieses Paket?",
+      "answer": "Alle Geräte im Subnetz 192.168.0.0/24 empfangen das Paket gleichzeitig."
+    },
+    {
+      "question": "Du möchtest eine veraltete, potenziell gefährliche Software testen. Welchen Netzwerkmodus wählst du und warum?",
+      "answer": "Den Sandbox-Modus — er isoliert die VM vollständig vom realen Netzwerk, sodass Schadsoftware keinen Schaden anrichten kann."
+    },
+    {
+      "question": "Erkläre den vollständigen Weg eines Datenpakets von deinem PC zu einem Webserver im Internet — welche Geräte und Protokolle sind beteiligt?",
+      "answer": "PC erstellt Paket → stellt fest: Ziel-IP ist außerhalb des eigenen Subnetzes → sendet Paket per ARP an das Standard Gateway (Router) → Router leitet über weitere Router (sichtbar per tracert/ICMP) hop-by-hop weiter → Paket erreicht den Ziel-Webserver → Antwort kommt denselben oder ähnlichen Weg zurück."
+    }
+  ]
