@@ -16,7 +16,7 @@
       "answer": "Der Ping schlägt fehl. Im Host-only-Modus gibt es keine Verbindung nach außen — nur zwischen Host und VM."
     },
     {
-      "question": "Warum darf die Adresse 192.168.0.255 keinem Gerät manuell zugewiesen werden?",
+      "question": "Warum darf die IPv4 Adresse 192.168.0.255 keinem Gerät manuell zugewiesen werden?",
       "answer": "Sie ist die Broadcast-Adresse — für Gerätezuweisungen reserviert und technisch nicht als Einzeladresse verwendbar."
     },
     {
